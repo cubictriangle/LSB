@@ -790,6 +790,7 @@ LUALIB_API int luaL_loadfilex (lua_State *L, const char *filename,
   if (filename == NULL) {
     lua_pushliteral(L, "=stdin");
     lf.f = stdin;
+    return errfile(L, "load file from", fnameindex);
   }
   else {
     lua_pushfstring(L, "@%s", filename);
@@ -801,13 +802,7 @@ LUALIB_API int luaL_loadfilex (lua_State *L, const char *filename,
   if (skipcomment(lf.f, &c))  /* read initial portion */
     lf.buff[lf.n++] = '\n';  /* add newline to correct line numbers */
   if (c == LUA_SIGNATURE[0]) {  /* binary file? */
-    lf.n = 0;  /* remove possible newline */
-    if (filename) {  /* "real" file? */
-      errno = 0;
-      lf.f = freopen(filename, "rb", lf.f);  /* reopen in binary mode */
-      if (lf.f == NULL) return errfile(L, "reopen", fnameindex);
-      skipcomment(lf.f, &c);  /* re-read initial portion */
-    }
+    return errfile(L, "load binary file (lua bytecode)", fnameindex);
   }
   if (c != EOF)
     lf.buff[lf.n++] = c;  /* 'c' is the first character of the stream */

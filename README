@@ -7,3 +7,4 @@ further information about Lua, see doc/readme.html.
 ===========================
 Lua libraries `os`, `io` and `debug` are removed for security concern.
 Lua library `package` has been modified, the `cpath` and `loadlib` are removed. Loading C libraries is riskly, users should only be able to load Lua libraries.
+Disable loading Lua bytecode. Function `dump` in Lua library `string` has been removed. Function `load` and `loadfile` in Lua library `base` are remove. Function `dofile` in Lua library `base` is modified, load file from `stdin` is not allowed and load binary file (Lua bytecode) is not allowed.
