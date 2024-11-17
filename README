@@ -5,4 +5,4 @@ For installation instructions, license details, and
 further information about Lua, see doc/readme.html.
 
 ===========================
-Lua libraries `os` and `io` ars removed for security concern.
+Lua libraries `os`, `io` and `debug` are removed for security concern.
