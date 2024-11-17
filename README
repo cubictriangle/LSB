@@ -6,3 +6,4 @@ further information about Lua, see doc/readme.html.
 
 ===========================
 Lua libraries `os`, `io` and `debug` are removed for security concern.
+Lua library `package` has been modified, the `cpath` and `loadlib` are removed. Loading C libraries is riskly, users should only be able to load Lua libraries.
